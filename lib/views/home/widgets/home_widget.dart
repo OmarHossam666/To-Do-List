@@ -65,7 +65,7 @@ class HomeWidget extends StatelessWidget {
         ),
         SizedBox(
             width: double.infinity,
-            height: 570,
+            height: 440,
             child: lists.isNotEmpty
                 ? ListView.builder(
                     itemCount: lists.length,
