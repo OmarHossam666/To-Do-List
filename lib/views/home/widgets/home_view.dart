@@ -13,7 +13,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final List<int> lists = [];
+  final List<int> lists = [1 , 2 , 3];
   final drawerKey = GlobalKey<SliderDrawerState>();
 
   @override

@@ -1,6 +1,6 @@
-import 'dart:developer';
 import 'package:prodigy_ad_02/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:prodigy_ad_02/views/tasks/widgets/task_view.dart';
 
 class TaskViewButton extends StatelessWidget
 {
@@ -12,7 +12,7 @@ class TaskViewButton extends StatelessWidget
     return GestureDetector(
       onTap: ()
       {
-        log("Task View ");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const TaskView()));
       },
       child: Material(
         borderRadius: BorderRadius.circular(15),

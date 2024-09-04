@@ -1,10 +1,7 @@
 import 'package:prodigy_ad_02/views/home/widgets/home_view.dart';
 import 'package:flutter/material.dart';
 
-void main() 
-{
-  runApp(const MainApp());
-}
+void main() => runApp(const MainApp());
 
 class MainApp extends StatelessWidget
 {
