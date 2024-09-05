@@ -5,10 +5,14 @@ class DateTimeSelectionWidget extends StatelessWidget {
     super.key,
     required this.onTap, 
     required this.title,
+    required this.time,
+    required this.isTime,
   });
 
   final VoidCallback onTap;
   final String title;
+  final String time;
+  final bool isTime;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class DateTimeSelectionWidget extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(right: 10),
-              width: 80,
+              width: isTime ? 80 : 150,
               height: 35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -49,7 +53,7 @@ class DateTimeSelectionWidget extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  title,
+                  time,
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

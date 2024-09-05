@@ -5,10 +5,14 @@ class RepTextField extends StatelessWidget {
   const RepTextField({
     super.key,
     required this.controller,
+    required this.onFieldSubmitted,
+    required this.onChanged,
     this.isForDescription = false,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
+  final Function(String)? onFieldSubmitted;
+  final Function(String)? onChanged;
   final bool isForDescription;
 
   @override
@@ -38,12 +42,8 @@ class RepTextField extends StatelessWidget {
                   borderSide: BorderSide(
                 color: Colors.black,
               ))),
-          onFieldSubmitted: (value) {
-            // Later
-          },
-          onChanged: (value) {
-            // Later
-          },
+          onFieldSubmitted: onFieldSubmitted,
+          onChanged: onChanged,
         ),
       ),
     );

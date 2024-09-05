@@ -1,6 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:prodigy_ad_02/extensions/space_extension.dart';
+import 'package:prodigy_ad_02/main.dart';
+import 'package:prodigy_ad_02/models/task.dart';
 import 'package:prodigy_ad_02/utils/app_colors.dart';
 import 'package:prodigy_ad_02/utils/app_strings.dart';
 import 'package:prodigy_ad_02/views/home/widgets/task_widget.dart';
@@ -8,12 +10,35 @@ import 'package:prodigy_ad_02/views/home/widgets/task_widget.dart';
 class HomeWidget extends StatelessWidget {
   const HomeWidget({
     super.key,
-    required this.textTheme,
-    required this.lists,
+    required this.textTheme, 
+    required this.base, 
+    required this.tasks,
   });
 
   final TextTheme textTheme;
-  final List<int> lists;
+  final BaseWidget base;
+  final List<Task> tasks;
+
+    int valueOfIndicator(List<Task> tasks) {
+    if (tasks.isNotEmpty) {
+      return tasks.length;
+    } 
+    else {
+      return 3;
+    }
+  }
+
+  int checkDoneTask(List<Task> tasks) {
+    int counter = 0;
+
+    for (Task task in tasks) {
+      if (task.isCompleted) {
+        counter++;
+      }
+    }
+
+    return counter;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +53,13 @@ class HomeWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 30,
                 height: 30,
                 child: CircularProgressIndicator(
-                  value: 1 / 3,
+                  value: checkDoneTask(tasks) / valueOfIndicator(tasks),
                   backgroundColor: Colors.grey,
-                  valueColor: AlwaysStoppedAnimation(AppColors.primaryColor),
+                  valueColor: const AlwaysStoppedAnimation(AppColors.primaryColor),
                 ),
               ),
               25.width,
@@ -51,7 +76,7 @@ class HomeWidget extends StatelessWidget {
                   ),
                   3.height,
                   Text(
-                    "1 of 3 task",
+                    "${checkDoneTask(tasks)} of ${tasks.length} task",
                     style: textTheme.titleMedium,
                   ),
                 ],
@@ -66,13 +91,16 @@ class HomeWidget extends StatelessWidget {
         SizedBox(
             width: double.infinity,
             height: 440,
-            child: lists.isNotEmpty
+            child: tasks.isNotEmpty
                 ? ListView.builder(
-                    itemCount: lists.length,
-                    itemBuilder: (context, index) => Dismissible(
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) {
+                      var task = tasks[index];
+
+                      return Dismissible(
                         direction: DismissDirection.horizontal,
                         onDismissed: (direction) {
-                          // We will remove the task from DB
+                          base.dataStore.deleteTask(task: task);
                         },
                         background: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -88,8 +116,10 @@ class HomeWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        key: Key(index.toString()),
-                        child: const TaskWidget()),
+                        key: Key(task.id),
+                        child: TaskWidget(task: task),
+                        );
+                    },
                     scrollDirection: Axis.vertical,
                   )
                 : Column(
@@ -108,10 +138,12 @@ class HomeWidget extends StatelessWidget {
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
-                            ),
-                          ))
+                          ),
+                        ),
+                      ),
                     ],
-                  ))
+                  )
+                )
       ]),
     );
   }

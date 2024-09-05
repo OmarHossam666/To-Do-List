@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ftoast/ftoast.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:prodigy_ad_02/main.dart';
 import 'package:prodigy_ad_02/utils/app_strings.dart';
 
 dynamic emptyWarning(BuildContext context) {
@@ -48,7 +49,7 @@ dynamic deleteAllTasks(BuildContext context) {
     confirmButtonText: 'Yes',
     cancelButtonText: 'No',
     onTapConfirm: () {
-      // BaseWidget.of(context).dataStore.box.clear();
+      BaseWidget.of(context).dataStore.box.clear();
       Navigator.pop(context);
     },
     onTapCancel: () => Navigator.pop(context),

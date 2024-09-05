@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:prodigy_ad_02/main.dart';
 import 'package:prodigy_ad_02/utils/constants.dart';
 
 class HomeAppBar extends StatefulWidget {
@@ -11,8 +12,7 @@ class HomeAppBar extends StatefulWidget {
   State<HomeAppBar> createState() => _HomeAppBarState();
 }
 
-class _HomeAppBarState extends State<HomeAppBar>
-    with SingleTickerProviderStateMixin {
+class _HomeAppBarState extends State<HomeAppBar> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   bool isDrawerOpen = false;
 
@@ -23,7 +23,8 @@ class _HomeAppBarState extends State<HomeAppBar>
       if (isDrawerOpen) {
         animationController.forward();
         widget.drawerKey.currentState?.openSlider();
-      } else {
+      } 
+      else {
         animationController.reverse();
         widget.drawerKey.currentState?.closeSlider();
       }
@@ -32,8 +33,7 @@ class _HomeAppBarState extends State<HomeAppBar>
 
   @override
   void initState() {
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
     super.initState();
   }
 
@@ -45,6 +45,8 @@ class _HomeAppBarState extends State<HomeAppBar>
 
   @override
   Widget build(BuildContext context) {
+    var base = BaseWidget.of(context).dataStore.box;
+
     return SizedBox(
       width: double.infinity,
       height: 130,
@@ -65,14 +67,14 @@ class _HomeAppBarState extends State<HomeAppBar>
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: IconButton(
+              child: base.isNotEmpty ? IconButton(
                   onPressed: () {
-                    deleteAllTasks(context);
+                    base.isEmpty ? noTaskWarning(context) : deleteAllTasks(context);
                   },
                   icon: const Icon(
                     Icons.delete_sharp,
                     size: 40,
-                  )),
+                  )) : Container(),
             ),
           ],
         ),
