@@ -1,16 +1,41 @@
-# prodigy_ad_02
+# To-Do List App
 
-A new Flutter project.
+A **Flutter** app for managing tasks with a simple and intuitive UI. This project includes essential features such as adding, updating, and deleting tasks, along with persistent local storage using Hive DB.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Add a Task**: Create new tasks to keep track of your to-do items.
+- **Update Task**: Modify existing tasks with ease.
+- **Delete a Task**: Remove tasks from the list.
+- **Delete All Tasks**: Clear all tasks at once.
+- **Mark Task as Completed/Not Completed**: Organize tasks by marking them as completed or pending.
+- **Persistent Storage**: Task data is stored locally using Hive DB, ensuring data is saved even after the app is closed.
+- **Slider Drawer**: A sleek and responsive side drawer for navigation and options.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repository:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   git clone https://github.com/OmarHossam666/PRODIGY_AD_02.git
+   cd PRODIGY_AD_02
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   flutter pub get
+   ```
+
+3. Run the app:
+
+   ```bash
+   flutter run
+   ```
+
+## Dependencies
+
+- **hive**: `^2.2.3`
+- **Hive_flutter**: `^1.0.0`
+- **uuid**: `^4.5.0`
+- **flutter_slider_drawer**: `^2.1.3`
