@@ -19,6 +19,7 @@ class BaseWidget extends InheritedWidget {
   BaseWidget({super.key, required this.child}) : super(child: child);
 
   final HiveDataStore dataStore = HiveDataStore();
+  // ignore: annotate_overrides, overridden_fields
   final Widget child;
 
   static BaseWidget of(BuildContext context) {
@@ -33,9 +34,7 @@ class BaseWidget extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    return false;
-  }
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
 }
 
 class MainApp extends StatelessWidget {
