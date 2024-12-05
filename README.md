@@ -17,8 +17,8 @@ A **Flutter** app for managing tasks with a simple and intuitive UI. This projec
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/OmarHossam666/PRODIGY_AD_02.git
-   cd PRODIGY_AD_02
+   git clone https://github.com/OmarHossam666/To-Do-List.git
+   cd To-Do-List
    ```
 
 2. Install dependencies:
